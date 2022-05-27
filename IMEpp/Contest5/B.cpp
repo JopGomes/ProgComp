@@ -2,27 +2,28 @@
 using namespace std;
 
 const int N = 2e3 + 10;
-vector<pair<int, int>> adj[N];
+vector<int> adj[N];
 int vis[N];
+bool bugs[N];
 int contador = 0;
 
-void dfs(int s, int tipo)
+void dfs(int s, bool tipo)
 {
     vis[s] = 1;
     int i=0;
     for (auto v : adj[s])
     { 
-        i++;
-        if (!vis[v.second])
+        if (!vis[v])
         {
-            vis[v.second] = 1;
-            v.first = (tipo + 1) % 2;
-            dfs(v.second, v.first);
+            vis[v] = 1;
+            bugs[v]=!tipo;
+            dfs(v,!tipo );
         }
         else
         {
-            if(adj[v.second][i].first == v.first ){
+            if(tipo == bugs[v] ){
                 contador++;
+                break;
             }
         }
     }
@@ -40,8 +41,10 @@ int main()
         for (int j = 0; it > j; j++)
         {
             cin >> bugA >> bugB;
-            adj[bugA].push_back({0, bugB});
-            adj[bugB].push_back({1, bugA});
+            if(!vis[bugA])bugs[bugA]=1;
+            if(!vis[bugA])bugs[bugA]=0;
+            adj[bugA].push_back(bugB);
+            adj[bugB].push_back(bugA);
             dfs(bugA, 0);
         }
         cout << "Scenario" << " #" << i << ":"<< (contador?"\nNo s":"\nS") << "uspicious bugs found!";
