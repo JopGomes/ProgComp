@@ -36,17 +36,20 @@ int main()
     for (int i = 1; n >= i; i++)
     {
         memset(vis,0,sizeof(vis));
+        memset(adj,0,sizeof(adj));
         contador = 0;
         cin >> b >> it;
         for (int j = 0; it > j; j++)
         {
             cin >> bugA >> bugB;
-            if(!vis[bugA])bugs[bugA]=1;
-            if(!vis[bugA])bugs[bugA]=0;
+            if(!vis[bugA])bugs[bugA]=true;
             adj[bugA].push_back(bugB);
             adj[bugB].push_back(bugA);
-            dfs(bugA, 0);
         }
-        cout << "Scenario" << " #" << i << ":"<< (contador?"\nNo s":"\nS") << "uspicious bugs found!";
+        for(int j = 1; j <= n; j++)
+			// not yet visited
+			if(vis[j] == 0)
+				dfs(j, true);
+        cout << "Scenario" << " #" << i << ":"<< (contador?"\nS":"\nNo s") << "uspicious bugs found!"<<endl;
     }
 }
