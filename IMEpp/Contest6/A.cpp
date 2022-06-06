@@ -20,7 +20,6 @@ void unite (int a, int b) {
 
 
 int main(){
-    set<int> par[i];
     cin >> n;
     for(int i=0;n>i;i++){
         cin >> a;

@@ -19,16 +19,16 @@ int main()
     {
         cin >> aux;
         numOfCookie.push_back(aux / need[i]);
-        rest.push_back(aux % need);
+        rest.push_back(aux % need[i]);
     }
-    vector<int> aux = numOfCookie;
-    sort(aux.begin(), aux.end());
-    auto min = numOfCookie.find(aux[0]);
+    vector<int> aux2 = numOfCookie;
+    sort(aux2.begin(), aux2.end());
+    auto mini = find(numOfCookie.begin(),numOfCookie.end(),aux2[0]);
     for (k; k > 0;)
     {
-        aux = numOfCookie;
-        sort(aux.begin(), aux.end());
-        auto min = numOfCookie.find(aux[0]);
-        while ((*it) == aux[0]{})
+        aux2 = numOfCookie;
+        sort(aux2.begin(), aux2.end());
+        mini = find(numOfCookie.begin(),numOfCookie.end(),aux2[0]);
+        while ((*mini) == aux2[0]){mini++;}
     }
 }
